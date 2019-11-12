@@ -5,6 +5,8 @@ package _03_jukebox;
  */
 
 
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
 import java.io.InputStream;
@@ -12,7 +14,10 @@ import java.net.URL;
 
 import javax.swing.Icon;
 import javax.swing.ImageIcon;
+import javax.swing.JButton;
+import javax.swing.JFrame;
 import javax.swing.JLabel;
+import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
 import javazoom.jl.player.advanced.AdvancedPlayer;
@@ -20,13 +25,14 @@ import javazoom.jl.player.advanced.AdvancedPlayer;
 /*   If you don't have javazoom.jar in your project, you can download it from here: http://bit.ly/javazoom
  *   Right click your project and add it as a JAR (Under Java Build Path > Libraries).*/
 
-public class Jukebox implements Runnable {
+public class Jukebox implements Runnable, ActionListener {
 
     public void run() {
 
 		// 1. Find an mp3 on your computer or on the Internet.
+    	
 		// 2. Create a Song object for that mp3
-
+    	
 		// 3. Play the Song
 
 		/*
@@ -36,14 +42,48 @@ public class Jukebox implements Runnable {
 		 * cover is clicked, stop the currently playing song, and play the one
 		 * that was selected.
 		 */
+    	
+    	JFrame frame = new JFrame();
+		frame.setVisible(true);
+		JPanel panel1 = new JPanel();
+		panel1.add(button1);
+		button1.addActionListener(this);
+		panel1.add(button2);
+		button2.addActionListener(this);
+		panel1.add(button3);
+		button3.addActionListener(this);
+		frame.add(panel1);
+		frame.pack();
     }
-    
+    	JButton button1 = new JButton("button1");
+    	JButton button2 = new JButton("button2");
+    	JButton button3 = new JButton("stop");
+    	Song newSong1 = new Song("Car-Theft-101.mp3");
+    	Song newSong2 = new Song("Nighttime-Escape.mp3");
     
 	/* Use this method to add album covers to your Panel. */
 	private JLabel loadImage(String fileName) {
 		URL imageURL = getClass().getResource(fileName);
 		Icon icon = new ImageIcon(imageURL);
 		return new JLabel(icon);
+	}
+
+
+	@Override
+	public void actionPerformed(ActionEvent arg0) {
+		// TODO Auto-generated method stub
+		if(arg0.getSource().equals(button1)) {
+			newSong2.stop();
+			newSong1.play();
+			}
+		if(arg0.getSource().equals(button2)) {
+			newSong1.stop();
+			newSong2.play();
+			}
+		if(arg0.getSource().equals(button3)) {
+			newSong1.stop();
+			newSong2.stop();
+			}
 	}
 
 }
