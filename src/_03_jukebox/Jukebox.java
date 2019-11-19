@@ -55,8 +55,8 @@ public class Jukebox implements Runnable, ActionListener {
 		frame.add(panel1);
 		frame.pack();
     }
-    	JButton button1 = new JButton("button1");
-    	JButton button2 = new JButton("button2");
+    	JButton button1 = new JButton("Play song 1");
+    	JButton button2 = new JButton("Play song 2");
     	JButton button3 = new JButton("stop");
     	Song newSong1 = new Song("Car-Theft-101.mp3");
     	Song newSong2 = new Song("Nighttime-Escape.mp3");
@@ -74,10 +74,12 @@ public class Jukebox implements Runnable, ActionListener {
 		// TODO Auto-generated method stub
 		if(arg0.getSource().equals(button1)) {
 			newSong2.stop();
+			newSong1.stop();
 			newSong1.play();
 			}
 		if(arg0.getSource().equals(button2)) {
 			newSong1.stop();
+			newSong2.stop();
 			newSong2.play();
 			}
 		if(arg0.getSource().equals(button3)) {
