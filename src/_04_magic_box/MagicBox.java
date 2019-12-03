@@ -14,7 +14,9 @@ import java.io.File;
 import java.io.IOException;
 
 import javax.imageio.ImageIO;
+import javax.swing.Icon;
 import javax.swing.JFrame;
+import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.SwingUtilities;
 
@@ -36,7 +38,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	BufferedImage backgroundImage;
 
-
+	JFrame frame = new JFrame("The Magic Box contains many secrets...");
 	@Override
 	public void run() {
 		try {
@@ -48,12 +50,13 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void createUI() {
-		JFrame frame = new JFrame("The Magic Box contains many secrets...");
+		
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
 		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		frame.setVisible(true);
+		frame.addMouseListener(this);
 	}
 
 	private void loadBackgroundImage() throws Exception {
@@ -79,8 +82,13 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
+		MediaPalace mp = new MediaPalace();
+		frame.remove(this);
+		frame.add(mp.loadImageFromWithinProject("TL in pixels.PNG"));
 		
+		frame.pack();
 	}
+	
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
