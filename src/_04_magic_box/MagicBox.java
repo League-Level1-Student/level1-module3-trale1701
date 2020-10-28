@@ -4,7 +4,6 @@ package _04_magic_box;
  *    Level 1
  */
 
-
 import java.awt.Dimension;
 import java.awt.Graphics;
 import java.awt.event.MouseEvent;
@@ -23,22 +22,24 @@ import javax.swing.SwingUtilities;
 public class MagicBox extends JPanel implements Runnable, MouseListener {
 
 	/*
-	 * We are going to hide secrets within the magic box. 
-	 * When the user clicks on a secret place, stuff will happen.
+	 * We are going to hide secrets within the magic box. When the user clicks on a
+	 * secret place, stuff will happen.
 	 * 
 	 * 1. Make the frame respond to mouse clicks.
 	 * 
-	 * 2. When the mouse is clicked, use the Media Palace (read the code in the magic_box package) to play sounds, 
-	 *    show images or speak.
+	 * 2. When the mouse is clicked, use the Media Palace (read the code in the
+	 * magic_box package) to play sounds, show images or speak.
 	 * 
-	 * 3. Choose 3 different locations on the background image.You can either use the mouse position, 
-	 *    or the color of the image, then decide what action the Media Palace should take in each case. 
-	 *     backgroundImage.getRGB(e.getX(), e.getY()) will give you the color of the current pixel.
+	 * 3. Choose 3 different locations on the background image.You can either use
+	 * the mouse position, or the color of the image, then decide what action the
+	 * Media Palace should take in each case. backgroundImage.getRGB(e.getX(),
+	 * e.getY()) will give you the color of the current pixel.
 	 */
 
 	BufferedImage backgroundImage;
 
 	JFrame frame = new JFrame("The Magic Box contains many secrets...");
+
 	@Override
 	public void run() {
 		try {
@@ -50,7 +51,7 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	}
 
 	private void createUI() {
-		
+
 		frame.add(this);
 		setPreferredSize(new Dimension(backgroundImage.getWidth(), backgroundImage.getHeight()));
 		frame.pack();
@@ -76,38 +77,49 @@ public class MagicBox extends JPanel implements Runnable, MouseListener {
 	@Override
 	public void mouseClicked(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mousePressed(MouseEvent e) {
 		// TODO Auto-generated method stub
-		MediaPalace mp = new MediaPalace();
-		frame.remove(this);
-		frame.add(mp.loadImageFromWithinProject("TL in pixels.PNG"));
-		
-		frame.pack();
+		System.out.print("(" + e.getX() + "   " + e.getY() + ")");
+		if (e.getX() > (338 - 20) && e.getX() < (338 + 20) && e.getY() > (179 - 20) && e.getY() < (179 + 20)) {
+			MediaPalace mp = new MediaPalace();
+			frame.remove(this);
+			frame.add(mp.loadImageFromWithinProject("TL in pixels.PNG"));
+			frame.pack();
+		}
+		if (e.getX() > (203 - 20) && e.getX() < (203 + 20) && e.getY() > (545 - 20) && e.getY() < (545 + 20)) {
+			MediaPalace mp = new MediaPalace();
+			frame.remove(this);
+			frame.add(mp.loadImageFromWithinProject("TL in pixels.PNG"));
+			frame.pack();
+		}
+		if (e.getX() > (192 - 20) && e.getX() < (192 + 20) && e.getY() > (880 - 20) && e.getY() < (880 + 20)) {
+			MediaPalace mp = new MediaPalace();
+			frame.remove(this);
+			frame.add(mp.loadImageFromWithinProject("TL in pixels.PNG"));
+			frame.pack();
+		}
 	}
-	
 
 	@Override
 	public void mouseReleased(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseEntered(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 	@Override
 	public void mouseExited(MouseEvent e) {
 		// TODO Auto-generated method stub
-		
+
 	}
 
 }
-
-
